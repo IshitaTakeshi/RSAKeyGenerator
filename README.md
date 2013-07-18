@@ -1,11 +1,12 @@
 Usage:  
 
-generate keys:  
-
+build:  
   $ cd ${project}  
   $ cd GenerateKeys/  
   $ ghc -o GenerateKeys GenerateKeys.hs  
   $ cd ../  
+
+generate keys:  
   $ GenerateKeys/GenerateKeys  
 
 encryption:  
