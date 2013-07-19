@@ -7,6 +7,7 @@ build:
   $ cd ../  
 
 generate keys:  
+  $ cd ${project}  
   $ GenerateKeys/GenerateKeys  
 
 encryption:  
