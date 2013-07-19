@@ -1,19 +1,17 @@
-Usage:  
-
-build:  
+##build:  
   $ cd ${project}  
   $ cd GenerateKeys/  
   $ ghc -o GenerateKeys GenerateKeys.hs  
   $ cd ../  
 
-generate keys:  
+##generate keys:  
   $ cd ${project}  
   $ GenerateKeys/GenerateKeys  
 
-encryption:  
+##encryption:  
   $ cd ${project}  
   $ python Cipher/encryption.py keys/publickey.csv <textfile>  
   
-decryption:  
+##decryption:  
   $ cd ${project}  
   $ python Cipher/decryption.py keys/privatekey.csv <"filename".encrypted>  
