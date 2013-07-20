@@ -1,8 +1,14 @@
 module CalcAlgorithm
-(powMod
+(power
+,powMod
 ,inverse
 ) where
 
+power :: (Integral a1, Num a) => a -> a1 -> a
+power x n
+    | n == 0    = 1
+    | even n    = power (x*x) (n `div` 2)
+    | otherwise = x * power x (n - 1)
  
 powMod :: Integer -> Integer -> Integer -> Integer
 powMod base ex m
@@ -12,7 +18,7 @@ powMod base ex m
  where
    square x = x * x
 
-
+extEuclid :: Integral t => t -> t -> (t, t)
 extEuclid a b = recurse a b 1 0 0 1
   where recurse a 0 x0 y0 x1 y1 = (x0, y0)
         recurse a b x0 y0 x1 y1 = let q = a `div` b in 

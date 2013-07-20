@@ -38,7 +38,7 @@ with open(filepath_in) as infile:
 
 	asciitext = int(text.encode("hex"), 16)
 	while asciitext < pow(n, Decimal(1/e)):
-		text += "PADDING"
+		text += "PADDING "
 		asciitext = int(text.encode("hex"), 16)
 	
 with open("text.encrypted", "w") as outfile:

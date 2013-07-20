@@ -11,26 +11,27 @@ import Data.Time.Clock.POSIX
 import CalcAlgorithm
 import Random
 
-factor2 :: Integer -> (Int, Integer)
-factor2 n = factor2' (0,n)
-  where
-    factor2' (s,d)
-      | even d    = factor2' (s + 1, d `div` 2)
-      | otherwise = (s,d)
+factor2 :: (Integral t, Num t1) => t -> (t, t1)
+factor2 x = factor2' (x,0)
+ where
+  factor2' (n,s)
+   | even n = factor2' (n `div` 2, s+1)
+   | otherwise = (n,s)
 
 isProbablePrime :: Integer -> Integer -> Bool
-isProbablePrime n a = 
-  let (s,d) = factor2 (n - 1)
-      aPowd = powMod a d n
-      double x = powMod x 2 n
-      evens = take s $ iterate double aPowd
-  in aPowd == 1 || any (== n - 1) evens
+isProbablePrime n a =
+ let (d,s) = factor2 (n-1) in
+ let p = powMod a d n /= 1 in
+ let q = not $ elem (n-1) $ map (\r -> powMod a ((power 2 r)*d) n) [0..s-1] in
+ not (p && q)
+
 
 isMillerRabinPrime :: Integer -> IO Bool
 isMillerRabinPrime n = do
- ns <- genInfiniteRandomList
- return . and $ map (isProbablePrime n) (take 12 $ filter (\x -> 0<x && x<n) ns)
+ ns <- genInfiniteRandomList (1,n-1) 
+ return . and $ map (isProbablePrime n) (take 12 ns)
 
+getPrime :: Integer -> IO Integer
 getPrime s = do
  if odd s then getPrime' s else getPrime (s+1)
   where getPrime' s = do b <- isMillerRabinPrime s

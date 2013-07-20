@@ -15,9 +15,10 @@ genSeed = do
 	let randomNum = read str :: Integer
 	return randomNum
 
-genInfiniteRandomList :: IO [Integer]
-genInfiniteRandomList = do
+--generate randoms among n1 and n2
+genInfiniteRandomList :: (Integer, Integer) -> IO [Integer]
+genInfiniteRandomList (n1, n2) = do
  g <- getPOSIXTime
- let randNum = randoms (mkStdGen (round g)) :: [Int]
+ let randNum = randomRs (n1, n2) (mkStdGen (round g)) :: [Integer]
  return $ map toInteger randNum
 
