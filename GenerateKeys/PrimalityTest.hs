@@ -29,7 +29,7 @@ isProbablePrime n a =
 isMillerRabinPrime :: Integer -> IO Bool
 isMillerRabinPrime n = do
  ns <- genInfiniteRandomList
- return . and $ map (isProbablePrime n) (take 12 ns)
+ return . and $ map (isProbablePrime n) (take 12 $ filter (\x -> 0<x && x<n) ns)
 
 getPrime s = do
  if odd s then getPrime' s else getPrime (s+1)
