@@ -1,4 +1,4 @@
-RSA Key Generator in Haskell
+##RSA Key Generator in Haskell
 
 Usage:
 
