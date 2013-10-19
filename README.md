@@ -1,3 +1,5 @@
+RSA Key Generator in Haskell
+
 Usage:
 
 generate keys:  
@@ -13,4 +15,4 @@ encryption:
 
 decryption:  
 	$ cd {project}  
-	$ python Cipher/decryption.py keys/privatekey.csv <"filename".encrypted>  
+	$ python Cipher/decryption.py keys/privatekey.csv <encrypted file>  
