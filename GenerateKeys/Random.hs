@@ -16,7 +16,7 @@ genSeed = do
 	let randomNum = read str :: Integer
 	return randomNum
 
---generate randoms among n1 and n2
+--generate randoms between n1 and n2
 genInfiniteRandomList :: (Integer, Integer) -> IO [Integer]
 genInfiniteRandomList (n1, n2) = do
  g <- getPOSIXTime
